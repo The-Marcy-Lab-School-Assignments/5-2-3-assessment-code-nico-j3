@@ -5,22 +5,29 @@ class Phone {
     this.phoneNumber = phoneNumber;
     this.name = name;
   }
+
   addContact(contact) {
-    if (!(this.name) || (!this.phoneNumber) || (this.phoneNumber.length !== 10)) {
+    if (!(contact.name) || (!contact.phoneNumber) || (contact.phoneNumber.length !== 10)) {
       return 'Invalid'
     }
     else {
-      this.contacts.push(contact);
+      const newContact = {
+        name: (`${contact.name}`),
+        phoneNumber: (`${contact.phoneNumber}`)
+      };
+
+      this.contacts.push(newContact);
+
       return (`${contact.name} added.`);
+
     }
-    return contact
   }
 
   removeContact(contact) {
-    const remove = this.contacts.findIndex((person) => person.name === person)
+    const remove = this.contacts.findIndex((person) => person.name === contact)
     if (remove !== -1) {
       this.contacts.splice(remove, 1);
-      return `${person} removed.`
+      return `${contact} removed.`
     }
     else {
       return 'Contact not found.'
@@ -28,29 +35,53 @@ class Phone {
 
   }
 
-  makeCall() {
-    const person = this.contacts.find(person => person.name === name)
-    if (!person && this.phoneNumber.length === 10) {
-      return `Calling ${this.phoneNumber}...`
+  makeCall(contact) {
+
+    if (contact && this.phoneNumber.length === 10) {
+      return `Calling ${contact}...`
+
     }
-    else if (person) {
-      return `Calling ${name}...`
+    else if (!contact && this.phoneNumber.length === 10) {
+      return `Calling ${contact.phoneNumber}...`
     }
+    else {
+      return 'Invalid'
+    }
+
+
+    // else if (!contact && this.phoneNumber.length === 10) {
+    //   return `Calling ${contact.phoneNumber}...`
+    // }
+    // else {
+    //   return `Calling ${contact}...`
+
+    // }
 
   }
 
-
-
-
   // vvv last curly vvv
-
 }
 
 
 
 
-class AppleIPhone {
+class AppleIPhone extends Phone {
+  constructor(phoneNumber, model) {
+    super(phoneNumber);
+    this.model = model;
+  }
 
+  sendIMessage(msg) {
+    let iphone = this.model;
+    if (iphone.includes('iPhone')) {
+      return (`Message: ${msg} - sent from ${iphone}`)
+    }
+    else {
+      return (`Message could not be sent.`)
+    }
+  }
+
+  //vv last curly vv
 }
 
 

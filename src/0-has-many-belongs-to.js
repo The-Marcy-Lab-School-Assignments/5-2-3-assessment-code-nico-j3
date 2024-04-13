@@ -38,13 +38,14 @@ class ToDoList {
     return [...this.#currentList]
   }
   getCompletedCount() {
-    // const complete = this.#currentList.filter((task) => {
-    //   if (task.isDone === true)
-    //     return task.reduce((total, items) => {
-    //       return total + items.isDone
-    //     }, 0)
+    const complete = this.#currentList.filter((task) => {
+      if (task.isDone === true)
+        done.push(task)
+      return task.reduce((total, items) => {
+        return total + items.isDone
+      }, 0)
+    })
 
-    // })
 
   }
   setDay(weekday) {
